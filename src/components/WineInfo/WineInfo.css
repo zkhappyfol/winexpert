@@ -205,6 +205,34 @@
   color: white;
 }
 
+/* 中文描述区域样式 */
+.description-section {
+  padding: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.description-section h3 {
+  color: #722f37;
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.wine-description {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border-left: 4px solid #722f37;
+}
+
+.wine-description p {
+  margin: 0;
+  color: #333;
+  line-height: 1.6;
+  font-size: 1rem;
+  text-align: justify;
+}
+
 @media (max-width: 768px) {
   .wine-header {
     flex-direction: column;

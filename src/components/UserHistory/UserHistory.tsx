@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import UserDataService, { UserWineHistory, UserFavorite } from '../../services/UserDataService';
-import { Wine } from '../../types/Wine';
+import UserDataService, { UserWineHistory, UserFavorite } from '../../services/UserDataService.ts';
+import { Wine } from '../../types/Wine.ts';
 import './UserHistory.css';
 
 interface UserHistoryProps {
@@ -30,13 +30,6 @@ const UserHistory: React.FC<UserHistoryProps> = ({ onWineSelect }) => {
       hour: 'numeric',
       minute: '2-digit'
     }).format(date);
-  };
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price);
   };
 
   const removeFromHistory = (entryId: string) => {
@@ -151,10 +144,6 @@ const UserHistory: React.FC<UserHistoryProps> = ({ onWineSelect }) => {
                           <span>{entry.wine.region}, {entry.wine.country}</span>
                         </div>
                         <div className="detail-row">
-                          <span className="detail-label">Price:</span>
-                          <span>{formatPrice(entry.wine.price)}</span>
-                        </div>
-                        <div className="detail-row">
                           <span className="detail-label">Rating:</span>
                           <span>{entry.wine.rating}/100</span>
                         </div>
@@ -229,10 +218,6 @@ const UserHistory: React.FC<UserHistoryProps> = ({ onWineSelect }) => {
                         <div className="detail-row">
                           <span className="detail-label">Region:</span>
                           <span>{favorite.wine.region}, {favorite.wine.country}</span>
-                        </div>
-                        <div className="detail-row">
-                          <span className="detail-label">Price:</span>
-                          <span>{formatPrice(favorite.wine.price)}</span>
                         </div>
                         <div className="detail-row">
                           <span className="detail-label">Grapes:</span>

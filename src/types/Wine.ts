@@ -6,24 +6,24 @@ export interface Wine {
   region: string;
   country: string;
   grapeVarieties: string[];
-  alcoholContent: number;
-  price: number;
   rating: number;
+  price?: number; // 价格设为可选
+  description: string;
+  imageUrl: string;
   tastingNotes: {
     appearance: string;
-    nose: string;
-    palate: string;
+    aroma: string;
+    taste: string;
     finish: string;
-    overall: string;
   };
   foodPairings: string[];
   servingTemperature: string;
-  decantingTime?: string;
-  imageUrl: string;
+  source?: string; // 'database' | 'ai-recognized'
 }
 
 export interface WineSearchResult {
   wine: Wine | null;
   confidence: number;
   extractedText: string;
+  aiAnalysis?: any; // Additional AI analysis data
 }

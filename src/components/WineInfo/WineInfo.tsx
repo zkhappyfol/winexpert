@@ -1,21 +1,16 @@
 import React from 'react';
-import { Wine } from '../../types/Wine';
+import { Wine } from '../../types/Wine.ts';
 import './WineInfo.css';
 
 interface WineInfoProps {
   wine: Wine;
   confidence: number;
+  uploadedImageUrl?: string; // 新增：上传的图片URL
   onAddToFavorites?: (wine: Wine) => void;
   onShare?: (wine: Wine) => void;
 }
 
-const WineInfo: React.FC<WineInfoProps> = ({ wine, confidence, onAddToFavorites, onShare }) => {
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price);
-  };
+const WineInfo: React.FC<WineInfoProps> = ({ wine, confidence, uploadedImageUrl, onAddToFavorites, onShare }) => {
 
   const getRatingColor = (rating: number) => {
     if (rating >= 95) return '#2e7d32';
@@ -36,7 +31,14 @@ const WineInfo: React.FC<WineInfoProps> = ({ wine, confidence, onAddToFavorites,
     <div className="wine-info">
       <div className="wine-header">
         <div className="wine-image">
-          <img src={wine.imageUrl} alt={wine.name} />
+          <img
+            src={uploadedImageUrl || wine.imageUrl || '/images/default-wine.jpg'}
+            alt={wine.name}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = '/images/default-wine.jpg';
+            }}
+          />
         </div>
         <div className="wine-title">
           <h1>{wine.name}</h1>
@@ -74,14 +76,6 @@ const WineInfo: React.FC<WineInfoProps> = ({ wine, confidence, onAddToFavorites,
               <span className="value">{wine.grapeVarieties.join(', ')}</span>
             </div>
             <div className="detail-item">
-              <span className="label">Alcohol:</span>
-              <span className="value">{wine.alcoholContent}%</span>
-            </div>
-            <div className="detail-item">
-              <span className="label">Price:</span>
-              <span className="value">{formatPrice(wine.price)}</span>
-            </div>
-            <div className="detail-item">
               <span className="label">Rating:</span>
               <span
                 className="value rating"
@@ -109,14 +103,10 @@ const WineInfo: React.FC<WineInfoProps> = ({ wine, confidence, onAddToFavorites,
           </div>
         </div>
 
-        <div className="pairings-section">
-          <h3>Food Pairings</h3>
-          <div className="pairings-list">
-            {wine.foodPairings.map((pairing, index) => (
-              <span key={index} className="pairing-tag">
-                {pairing}
-              </span>
-            ))}
+        <div className="description-section">
+          <h3>酒款介绍</h3>
+          <div className="wine-description">
+            <p>{wine.description}</p>
           </div>
         </div>
       </div>

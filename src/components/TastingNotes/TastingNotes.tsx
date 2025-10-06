@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Wine } from '../../types/Wine';
+import { Wine } from '../../types/Wine.ts';
 import './TastingNotes.css';
 
 interface TastingNotesProps {

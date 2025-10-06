@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from 'react';
-import WineLabelUpload from './components/WineLabelUpload/WineLabelUpload';
-import WineInfo from './components/WineInfo/WineInfo';
-import TastingNotes from './components/TastingNotes/TastingNotes';
-import UserHistory from './components/UserHistory/UserHistory';
-import { WineRecognitionService } from './services/WineRecognitionService';
-import UserDataService from './services/UserDataService';
-import { Wine, WineSearchResult } from './types/Wine';
+import WineLabelUpload from './components/WineLabelUpload/WineLabelUpload.tsx';
+import WineInfo from './components/WineInfo/WineInfo.tsx';
+import TastingNotes from './components/TastingNotes/TastingNotes.tsx';
+import UserHistory from './components/UserHistory/UserHistory.tsx';
+import { WineRecognitionService } from './services/WineRecognitionService.ts';
+import UserDataService from './services/UserDataService.ts';
+import { Wine, WineSearchResult } from './types/Wine.ts';
 import './App.css';
 
 type AppState = 'upload' | 'results' | 'history';
@@ -17,10 +17,15 @@ function App() {
   const [selectedWine, setSelectedWine] = useState<Wine | null>(null);
   const [userNotes, setUserNotes] = useState<{ [wineId: string]: string }>({});
   const [error, setError] = useState<string | null>(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null); // 新增：存储上传的图片URL
 
   const handleImageUpload = useCallback(async (file: File) => {
     setIsProcessing(true);
     setError(null);
+
+    // 创建图片URL用于显示
+    const imageUrl = URL.createObjectURL(file);
+    setUploadedImageUrl(imageUrl);
 
     try {
       const result = await WineRecognitionService.analyzeWineLabel(file);
@@ -79,7 +84,13 @@ function App() {
     setSearchResult(null);
     setSelectedWine(null);
     setError(null);
-  }, []);
+
+    // 清理之前的图片URL以防止内存泄漏
+    if (uploadedImageUrl) {
+      URL.revokeObjectURL(uploadedImageUrl);
+      setUploadedImageUrl(null);
+    }
+  }, [uploadedImageUrl]);
 
   const handleViewHistory = useCallback(() => {
     setCurrentState('history');
@@ -144,6 +155,7 @@ function App() {
             <WineInfo
               wine={selectedWine}
               confidence={searchResult.confidence}
+              uploadedImageUrl={uploadedImageUrl}
               onAddToFavorites={handleAddToFavorites}
               onShare={handleShare}
             />

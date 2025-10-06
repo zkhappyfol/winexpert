@@ -1,4 +1,4 @@
-import { Wine } from '../types/Wine';
+import { Wine } from '../types/Wine.ts';
 
 export const mockWineDatabase: Wine[] = [
   {
@@ -9,20 +9,19 @@ export const mockWineDatabase: Wine[] = [
     region: 'Napa Valley',
     country: 'USA',
     grapeVarieties: ['Cabernet Sauvignon', 'Merlot', 'Petit Verdot', 'Cabernet Franc'],
-    alcoholContent: 15,
     price: 450,
     rating: 96,
+    description: 'Exceptional Bordeaux-style blend showcasing Napa Valley terroir with complex flavors and elegant structure.',
     tastingNotes: {
       appearance: 'Deep ruby red with purple highlights',
-      nose: 'Complex aromas of blackcurrant, cedar, vanilla, and tobacco',
-      palate: 'Full-bodied with rich flavors of dark fruit, chocolate, and spices',
-      finish: 'Long and elegant finish with silky tannins',
-      overall: 'Exceptional Bordeaux-style blend showcasing Napa Valley terroir'
+      aroma: 'Complex aromas of blackcurrant, cedar, vanilla, and tobacco',
+      taste: 'Full-bodied with rich flavors of dark fruit, chocolate, and spices',
+      finish: 'Long and elegant finish with silky tannins'
     },
     foodPairings: ['Grilled ribeye steak', 'Lamb with rosemary', 'Aged cheeses', 'Dark chocolate'],
     servingTemperature: '60-65°F (16-18°C)',
-    decantingTime: '1-2 hours',
-    imageUrl: '/images/opus-one.jpg'
+    imageUrl: '/images/opus-one.jpg',
+    source: 'database'
   },
   {
     id: '2',
@@ -32,19 +31,19 @@ export const mockWineDatabase: Wine[] = [
     region: 'Champagne',
     country: 'France',
     grapeVarieties: ['Chardonnay', 'Pinot Noir'],
-    alcoholContent: 12.5,
     price: 220,
     rating: 95,
+    description: 'Iconic Champagne representing the pinnacle of elegance with exceptional balance and refinement.',
     tastingNotes: {
       appearance: 'Brilliant golden color with fine, persistent bubbles',
-      nose: 'Elegant bouquet of white flowers, citrus, and brioche',
-      palate: 'Creamy texture with flavors of apple, pear, and mineral notes',
-      finish: 'Long, refined finish with subtle toasted notes',
-      overall: 'Iconic Champagne representing the pinnacle of elegance'
+      aroma: 'Elegant bouquet of white flowers, citrus, and brioche',
+      taste: 'Creamy texture with flavors of apple, pear, and mineral notes',
+      finish: 'Long, refined finish with subtle toasted notes'
     },
     foodPairings: ['Oysters', 'Caviar', 'White fish', 'Soft cheeses'],
     servingTemperature: '45-50°F (7-10°C)',
-    imageUrl: '/images/dom-perignon.jpg'
+    imageUrl: '/images/dom-perignon.jpg',
+    source: 'database'
   },
   {
     id: '3',
@@ -54,20 +53,19 @@ export const mockWineDatabase: Wine[] = [
     region: 'Napa Valley',
     country: 'USA',
     grapeVarieties: ['Cabernet Sauvignon'],
-    alcoholContent: 14.5,
     price: 85,
     rating: 92,
+    description: 'Classic Napa Cabernet with excellent balance and accessibility, smooth and supple texture.',
     tastingNotes: {
       appearance: 'Deep, dark red with garnet highlights',
-      nose: 'Rich aromas of blackberry, cassis, and vanilla oak',
-      palate: 'Smooth and supple with ripe fruit flavors and well-integrated tannins',
-      finish: 'Medium to long finish with hints of mocha and spice',
-      overall: 'Classic Napa Cabernet with excellent balance and accessibility'
+      aroma: 'Rich aromas of blackberry, cassis, and vanilla oak',
+      taste: 'Smooth and supple with ripe fruit flavors and well-integrated tannins',
+      finish: 'Medium to long finish with hints of mocha and spice'
     },
     foodPairings: ['Grilled steaks', 'BBQ ribs', 'Mushroom dishes', 'Hard cheeses'],
     servingTemperature: '60-65°F (16-18°C)',
-    decantingTime: '30 minutes',
-    imageUrl: '/images/caymus.jpg'
+    imageUrl: '/images/caymus.jpg',
+    source: 'database'
   },
   {
     id: '4',
@@ -77,19 +75,19 @@ export const mockWineDatabase: Wine[] = [
     region: 'Marlborough',
     country: 'New Zealand',
     grapeVarieties: ['Sauvignon Blanc'],
-    alcoholContent: 13,
     price: 25,
     rating: 90,
+    description: 'Quintessential Marlborough Sauvignon Blanc with excellent purity and vibrant tropical character.',
     tastingNotes: {
       appearance: 'Pale straw color with green tints',
-      nose: 'Vibrant aromas of passion fruit, gooseberry, and fresh herbs',
-      palate: 'Crisp and refreshing with tropical fruit flavors and citrus acidity',
-      finish: 'Clean, zesty finish with mineral undertones',
-      overall: 'Quintessential Marlborough Sauvignon Blanc with excellent purity'
+      aroma: 'Vibrant aromas of passion fruit, gooseberry, and fresh herbs',
+      taste: 'Crisp and refreshing with tropical fruit flavors and citrus acidity',
+      finish: 'Clean, zesty finish with mineral undertones'
     },
     foodPairings: ['Seafood', 'Salads', 'Goat cheese', 'Asian cuisine'],
     servingTemperature: '45-50°F (7-10°C)',
-    imageUrl: '/images/cloudy-bay.jpg'
+    imageUrl: '/images/cloudy-bay.jpg',
+    source: 'database'
   },
   {
     id: '5',
@@ -99,24 +97,29 @@ export const mockWineDatabase: Wine[] = [
     region: 'Piedmont',
     country: 'Italy',
     grapeVarieties: ['Nebbiolo'],
-    alcoholContent: 14,
     price: 120,
     rating: 94,
+    description: 'Traditional Barolo showcasing the elegance of Nebbiolo with complex aromatics and firm structure.',
     tastingNotes: {
       appearance: 'Garnet red with orange highlights',
-      nose: 'Complex aromas of roses, tar, truffle, and red cherry',
-      palate: 'Full-bodied with firm tannins, cherry fruit, and earthy undertones',
-      finish: 'Very long finish with leather and spice notes',
-      overall: 'Traditional Barolo showcasing the elegance of Nebbiolo'
+      aroma: 'Complex aromas of roses, tar, truffle, and red cherry',
+      taste: 'Full-bodied with firm tannins, cherry fruit, and earthy undertones',
+      finish: 'Very long finish with leather and spice notes'
     },
     foodPairings: ['Truffle dishes', 'Braised beef', 'Wild game', 'Aged Parmesan'],
     servingTemperature: '60-65°F (16-18°C)',
-    decantingTime: '2-3 hours',
-    imageUrl: '/images/barolo-brunate.jpg'
+    imageUrl: '/images/barolo-brunate.jpg',
+    source: 'database'
   }
 ];
 
 export const searchWinesByText = (text: string): Wine[] => {
+  // 安全检查：确保text不是undefined或null
+  if (!text || typeof text !== 'string') {
+    console.warn('searchWinesByText called with invalid text:', text);
+    return [];
+  }
+
   const searchTerms = text.toLowerCase().split(' ').filter(term => term.length > 2);
 
   if (searchTerms.length === 0) return [];
@@ -139,6 +142,12 @@ export const searchWinesByText = (text: string): Wine[] => {
 };
 
 export const findBestMatch = (text: string): Wine | null => {
+  // 安全检查：确保text不是undefined或null
+  if (!text || typeof text !== 'string') {
+    console.warn('findBestMatch called with invalid text:', text);
+    return null;
+  }
+
   const results = searchWinesByText(text);
 
   if (results.length === 0) return null;
